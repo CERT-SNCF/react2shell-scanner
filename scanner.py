@@ -284,8 +284,9 @@ def check_vulnerability(host: str, timeout: int = 10, verify_ssl: bool = True, f
         body, content_type = build_safe_payload()
         is_vulnerable = is_vulnerable_safe_check
     else:
-        body, content_type = build_rce_payload(windows=windows, waf_bypass=waf_bypass, waf_bypass_size_kb=waf_bypass_size_kb)
-        is_vulnerable = is_vulnerable_rce_check
+        print("Please use --safe-check")
+    #    body, content_type = build_rce_payload(windows=windows, waf_bypass=waf_bypass, waf_bypass_size_kb=waf_bypass_size_kb)
+    #    is_vulnerable = is_vulnerable_rce_check
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36 Assetnote/1.0.0",
@@ -569,7 +570,9 @@ Examples:
         if args.safe_check:
             print(colorize("[*] Using safe side-channel check", Colors.CYAN))
         else:
-            print(colorize("[*] Using RCE PoC check", Colors.CYAN))
+            #print(colorize("[*] Using RCE PoC check", Colors.CYAN))
+            print("Please use --safe-check")
+            sys.exit(1)
         if args.windows:
             print(colorize("[*] Windows mode enabled (PowerShell payload)", Colors.CYAN))
         if args.waf_bypass:
